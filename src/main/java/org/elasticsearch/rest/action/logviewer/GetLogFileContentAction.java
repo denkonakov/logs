@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Stack;
 
+import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 import static org.elasticsearch.rest.RestRequest.Method.GET;
 import static org.elasticsearch.rest.RestStatus.NOT_FOUND;
 import static org.elasticsearch.rest.RestStatus.OK;
-import static org.elasticsearch.rest.action.support.RestXContentBuilder.restContentBuilder;
 
 public class GetLogFileContentAction extends BaseRestHandler {
 
@@ -24,15 +24,14 @@ public class GetLogFileContentAction extends BaseRestHandler {
     @Inject
     public GetLogFileContentAction(Settings settings, Client client, RestController controller,
                                    ThreadPool threadPool) {
-        super(settings, client);
+        super(settings, controller, client);
         this.threadPool = threadPool;
         controller.registerHandler(GET, "/_logviewer/{name}", this);
     }
 
-    public void handleRequest(final RestRequest request, final RestChannel channel) {
-
+    @Override
+    protected void handleRequest(final RestRequest request, final RestChannel channel, Client client) throws Exception {
         threadPool.generic().execute(new Runnable() {
-            @Override
             public void run() {
                 String pathLogs = settings.get("path.logs");
                 File logsDir = new File(pathLogs);
@@ -41,7 +40,7 @@ public class GetLogFileContentAction extends BaseRestHandler {
 
                 try {
                     if (!logFile.exists()) {
-                        channel.sendResponse(new StringRestResponse(NOT_FOUND, "Log file not found"));
+                        channel.sendResponse(new BytesRestResponse(NOT_FOUND, "Log file not found"));
                     } else {
                         long line = request.paramAsLong("line", 1);
                         String content = "";
@@ -51,16 +50,16 @@ public class GetLogFileContentAction extends BaseRestHandler {
                         } else if (type.equals("tail")) {
                             content = readLastLines(logFile, line);
                         }
-                        XContentBuilder builder = restContentBuilder(request);
+                        XContentBuilder builder = jsonBuilder();
                         builder.startObject();
                         builder.field("name", logFile.getName());
                         builder.field("content", content);
                         builder.endObject();
-                        channel.sendResponse(new XContentRestResponse(request, OK, builder));
+                        channel.sendResponse(new BytesRestResponse(OK, builder));
                     }
                 } catch (Exception e) {
                     try {
-                        channel.sendResponse(new XContentThrowableRestResponse(request, e));
+                        channel.sendResponse(new BytesRestResponse(channel, e));
                     } catch (IOException e1) {
                         logger.error("Failed to send failure response", e1);
                     }
@@ -115,7 +114,7 @@ public class GetLogFileContentAction extends BaseRestHandler {
                 builder.append(line);
             }
             return builder.toString();
-        } catch(IOException e){
+        } catch (IOException e) {
             return builder.toString();
         } finally {
             fileHandler.close();

@@ -26,9 +26,8 @@ public class GetLogFileNamesAction extends BaseRestHandler {
     }
 
     @Override
-    protected void handleRequest(RestRequest request, RestChannel channel, Client client) throws Exception {
+    protected void handleRequest(RestRequest request, final RestChannel channel, Client client) throws Exception {
         threadPool.generic().execute(new Runnable() {
-            @Override
             public void run() {
                 String pathLogs = settings.get("path.logs");
                 File[] logs = new File(pathLogs).listFiles();

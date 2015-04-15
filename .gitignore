@@ -13,3 +13,7 @@
 logs/
 data/
 target/
+
+# Gradle
+./gradle
+build
