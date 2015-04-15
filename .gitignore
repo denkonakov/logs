@@ -15,5 +15,5 @@ data/
 target/
 
 # Gradle
-./gradle
+.gradle/
 build

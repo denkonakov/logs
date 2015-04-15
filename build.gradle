@@ -6,8 +6,8 @@ version = '1.1'
 
 description = """log-viewer"""
 
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
      maven { url "http://repo.maven.apache.org/maven2" }
@@ -21,6 +21,9 @@ dependencies {
 task artifact(type: Zip) {
     dependsOn 'assemble'
 
-    from project.projectDir.path + '/_site'
+    from(project.projectDir.path + '/_site') {
+        into '_site'
+    }
+
     from project.buildDir.path + '/libs'
 }
