@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'io.searchbox'
+version = '1.0'
+
+description = """log-viewer"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+
+
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+dependencies {
+    compile 'org.elasticsearch:elasticsearch:1.5.1'
+    compile 'junit:junit:4.9'
+}
