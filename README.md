@@ -1,14 +1,11 @@
 This repo is the copy of the: https://github.com/ferhatsb/elasticsearch-log-viewer.git
-And attempt to make it work with elasticsearch 1.5.1
-
-This plugin aims to provide a rest interface and an ui for reading ElasticSearch logs.
+And my attempt to make it work with elasticsearch 1.5.1
 
 ## How To Install
 
-bin/plugin -url https://bitbucket.org/ferhat/elasticsearch-log-viewer/downloads/log-viewer-1.0.zip -install log-viewer
-
-However that not works as expected, you will have result '/plugins/log-viewer/log-viewer-1.0'.
-You should move contents of log-viewer-1.0 to upper folder log-viewer.
+* Clone this repo
+* Inside the cloned folder do: './gradlew clean install'
+* Copy the command for intallation produced by Gradle and call it inside elasticsearch HOME folder
 
 ## Rest Interfaces
 

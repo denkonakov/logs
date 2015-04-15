@@ -1,8 +1,8 @@
 apply plugin: 'java'
-apply plugin: 'maven'
 
 group = 'io.searchbox'
 version = '1.1'
+jar.baseName = 'log-viewer'
 
 description = """log-viewer"""
 
@@ -26,4 +26,12 @@ task artifact(type: Zip) {
     }
 
     from project.buildDir.path + '/libs'
+}
+
+task install {
+    dependsOn 'artifact'
+
+    doLast {
+        println "Command for installation is: 'bin/plugin -url file://" + project.buildDir.absolutePath + "/distributions/" + jar.baseName + "-" + jar.version + ".zip -install " + jar.baseName + "'"
+    }
 }
