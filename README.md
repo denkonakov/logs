@@ -1,3 +1,6 @@
+This repo is the copy of the: https://github.com/ferhatsb/elasticsearch-log-viewer.git
+And attempt to make it work with elasticsearch 1.5.1
+
 This plugin aims to provide a rest interface and an ui for reading ElasticSearch logs.
 
 ## How To Install
