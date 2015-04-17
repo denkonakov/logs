@@ -3,7 +3,7 @@
 /* Services */
 angular.module('logviewerServices', ['ngResource']).
     factory('Log',function ($resource) {
-        return $resource('/_logviewer/logs', {}, {
+        return $resource('/_logs/as_files', {}, {
             query: {method: 'GET', params: {}, isArray: true}
         });
     }).

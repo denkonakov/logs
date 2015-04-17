@@ -1,16 +1,19 @@
 apply plugin: 'java'
+apply plugin: 'idea'
 
-group = 'io.searchbox'
-version = '1.1'
-jar.baseName = 'log-viewer'
+idea.module.name = 'logs'
 
-description = """log-viewer"""
+group = 'com.github'
+version = '0.9'
+jar.baseName = 'logs'
+
+description = """logs"""
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-     maven { url "http://repo.maven.apache.org/maven2" }
+     mavenCentral()
 }
 
 dependencies {
