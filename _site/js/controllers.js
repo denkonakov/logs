@@ -1,16 +1,16 @@
 'use strict';
 
 /* Controllers */
-function LogDetailCtrl($scope, $timeout, $routeParams, LogDetail, Log) {
-    $scope.log = LogDetail.get({name: $routeParams.name, type: $scope.type, line: $scope.line});
-    $scope.logs = Log.query();
+function LogDetailCtrl($scope, $timeout, $routeParams, Folders) {
+//    $scope.log = LogDetail.get({name: $routeParams.name, type: $scope.type, line: $scope.line});
+    $scope.folders = Folders.query();
     $scope.tick = 'none';
     $scope.type = 'tail';
     $scope.line = 1;
 
     function tick() {
         if ($scope.tick != 'none') {
-            $scope.log = LogDetail.get({name: $routeParams.name, type: $scope.type, line: $scope.line});
+//            $scope.log = LogDetail.get({name: $routeParams.name, type: $scope.type, line: $scope.line});
             $timeout(tick, $scope.tick);
         } else {
             $timeout.cancel();
@@ -22,7 +22,7 @@ function LogDetailCtrl($scope, $timeout, $routeParams, LogDetail, Log) {
     };
 
     $scope.fetch = function () {
-        $scope.log = LogDetail.get({name: $routeParams.name, type: $scope.type, line: $scope.line});
+//        $scope.log = LogDetail.get({name: $routeParams.name, type: $scope.type, line: $scope.line});
     };
 
     $scope.navClass = function (page) {

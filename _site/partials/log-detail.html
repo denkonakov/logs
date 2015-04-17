@@ -3,9 +3,12 @@
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
                 <li class="nav-header">Logs</li>
-                <li ng-repeat="log in logs" ng-class="navClass('{{log.name}}')">
-                    <a href="#/logs/{{log.name}}">{{log.name|truncate:30}}</a>
-                </li>
+                <div ng-repeat="folder in folders">
+                    <div>{{folder.folder}}</div>
+                    <li ng-repeat="file in folder.files" ng-class="navClass('#/{{folder.folder}}/{{file}}')">
+                        <a href="#/{{folder.folder}}/{{file}}">{{file}}</a>
+                    </li>
+                </div>
             </ul>
         </div>
         <!--/.well -->
