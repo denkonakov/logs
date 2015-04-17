@@ -6,10 +6,9 @@ angular.module('logviewerServices', ['ngResource']).
         return $resource('/_logs/as_files', {}, {
             query: {method: 'GET', params: {}, isArray: true}
         });
-    });//.
-
-//    factory('LogDetail', function ($resource) {
-//        return $resource('/_logviewer/:name', {}, {
-//            query: {method: 'GET', params: {name: 'elasticsearch.log', type: 'tail', line: '100'}}
-//        });
-//    });
+    }).
+    factory('LogLines',function ($resource) {
+        return $resource('/_logs/:folder/:file', {}, {
+            query: {method: 'GET', params: {folder: 'start', file: 'start', type: 'tail', lines: '100'}, isArray: true}
+        });
+    });

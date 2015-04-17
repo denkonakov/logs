@@ -34,9 +34,12 @@
             </select>
             <button ng-click="fetch()" class="btn">Fetch</button>
         </form>
-        <textarea class="log-view" readonly>
-            {{log.content}}
-        </textarea>
+
+        <div class="log-view">
+            <div ng-repeat="logline in log">
+                {{logline.time}} | {{logline.data}}</br>
+            </div>
+        </div>
     </div>
     <!--/span-->
 </div><!--/row-->
