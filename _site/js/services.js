@@ -9,6 +9,6 @@ angular.module('logviewerServices', ['ngResource']).
     }).
     factory('LogLines',function ($resource) {
         return $resource('/_logs/:folder/:file', {}, {
-            query: {method: 'GET', params: {folder: 'start', file: 'start', type: 'tail', lines: '100'}, isArray: true}
+            query: {method: 'GET', params: {folder: 'start', file: 'start', type: 'tail', lines: '20'}, isArray: true}
         });
     });
