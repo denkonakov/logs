@@ -42,6 +42,12 @@
                 <option value="10000">10sec</option>
             </select>
 
+            <label for="index">Index:</label>
+            <select ng-model="index" id="index" class="input-small">
+                <option value="all">All</option>
+                <option ng-repeat="ind in indexes" value="{{ind}}">{{ind}}</option>
+            </select>
+
             <button ng-click="fetch()" class="btn">Fetch</button>
         </form>
 
