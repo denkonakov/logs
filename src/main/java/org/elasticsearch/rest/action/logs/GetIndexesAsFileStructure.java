@@ -15,6 +15,9 @@ import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import java.io.IOException;
 
 /**
+ * Aggregates the log documents by hosts and by facility. It should
+ * give the folder-like structure folder/files to show on the page.
+ *
  * Created by deniskonakov on 2015-04-20.
  */
 public class GetIndexesAsFileStructure extends BaseRestHandler {
@@ -38,6 +41,7 @@ public class GetIndexesAsFileStructure extends BaseRestHandler {
                 if (st != null) {
                     result.array("files", st.getBuckets().stream().map(MultiBucketsAggregation.Bucket::getKey).toArray());
                 }
+                result.endObject();
             }
             result.endArray();
 

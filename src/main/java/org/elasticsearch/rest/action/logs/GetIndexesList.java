@@ -13,6 +13,9 @@ import java.util.Arrays;
 import java.util.Collections;
 
 /**
+ * Returns the list of Indexes. Will return only 30 last ones.
+ * We suppose than there is NO other indexes but logstash-* ones.
+ *
  * Created by deniskonakov on 2015-04-20.
  */
 public class GetIndexesList extends BaseRestHandler {

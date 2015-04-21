@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.util.*;
 
 /**
+ * Show the logs from the selected index
+ *
  * Created by deniskonakov on 2015-04-20.
  */
 public class GetLogDataFromIndex extends BaseRestHandler {
