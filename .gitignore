@@ -10,7 +10,7 @@
 *.ipr
 *.iws
 .idea
-logs/
+#logs/
 data/
 target/
 
