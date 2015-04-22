@@ -1,10 +1,10 @@
 This plugin was intended to add quickly ability for centralized logging for the legacy project using SLF4->JUL bridge for logging.
 The whole solution looked like:
 
-1) Legacy project with SLF4->JUL logging
-2) https://github.com/mp911de/logstash-gelf - for easy and quick way to send logs from JUL to logstash
-3) logstash for inputting logs by udp/gelf and output them to elasticsearh
-4) elasticsearch with the head (http://mobz.github.io/elasticsearch-head/) pluing and this one installed
+* Legacy project with SLF4->JUL logging
+* https://github.com/mp911de/logstash-gelf - for easy and quick way to send logs from JUL to logstash
+* logstash for inputting logs by udp/gelf and output them to elasticsearh
+* elasticsearch with the head (http://mobz.github.io/elasticsearch-head/) pluing and this one installed
 
 We assume, that elasticsearch is being used only for logstash and for nothing else.
 
